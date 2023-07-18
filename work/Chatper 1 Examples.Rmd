@@ -1,0 +1,52 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+browser = read.csv("../examples/web-browsers.csv")
+```
+
+```{r}
+nrow(browser)
+mean(browser$spend)
+var(browser$spend)/nrow(browser)
+sd(browser$spend)/sqrt(nrow(browser)) # This isn't a pure sample standard deviation calculation but rather it is the standard error calculation
+```
+
+```{r}
+B <- 1000
+mub <- c()
+for (b in 1:B){
+	samp_b = sample.int(nrow(browser), replace=TRUE)
+	mub <- c(mub, mean(browser$spend[samp_b])
+	         
+	         )
+}
+
+sd(mub)
+
+
+summary( glm( log(spend) ~ broadband + anychildren, data=browser) )
+
+
+xbar <- mean(browser$spend)
+sig2 <- var(browser$spend)
+
+B <- 10000
+mub <- c()
+for (b in 1:B){
+  xsamp <- rnorm(1e4, xbar, sqrt(sig2))
+  mub <- c(mub, mean(xsamp))
+  }
+
+sd(mub)
+
+xbar
+sqrt(sig2)
+
+1e4
+```
+
